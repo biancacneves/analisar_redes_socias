@@ -1,0 +1,16 @@
+# Arquivos compilados Java
+*.class
+
+# Arquivos da IDE
+*.iml
+.idea/
+.vscode/
+.eclipse/
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos temporários
+*.tmp
+*.temp
