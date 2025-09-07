@@ -97,21 +97,6 @@ java Main
 
 ---
 
-##  Casos de Uso
-
-<div align="center">
-
-| 🎯 **Área** | 📋 **Aplicação** | 🔍 **Objetivo** |
-|-------------|------------------|-----------------|
-| **Análise Social** | Estudo de padrões de conectividade | Compreender comportamento social |
-| **Marketing** | Identificação de influenciadores | Estratégias de marketing viral |
-| **Recomendação** | Sugestões de amigos | Melhorar engajamento |
-| **Pesquisa** | Simulações sociológicas | Estudos acadêmicos |
-
-</div>
-
----
-
 ## 🛠️ Tecnologias
 
 <div align="center">
