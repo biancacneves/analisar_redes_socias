@@ -7,7 +7,7 @@ public class RedeSocial {
         this.grafo = grafo;
     }
     
-    // 1. Encontrar amigos em comum entre dois usuários
+    // Encontrar amigos em comum entre dois usuários
     public Set<Integer> amigosEmComum(int userId1, int userId2) {
         Set<Integer> amigos1 = new HashSet<>(grafo.obterVizinhos(userId1));
         Set<Integer> amigos2 = new HashSet<>(grafo.obterVizinhos(userId2));
@@ -17,7 +17,7 @@ public class RedeSocial {
         return amigos1;
     }
     
-    // 2. Sugerir amigos para um usuário (amigos dos amigos)
+    // Sugerir amigos para um usuário (amigos dos amigos)
     public List<Usuario> sugerirAmigos(int userId, int limite) {
         Set<Integer> amigosAtuais = new HashSet<>(grafo.obterVizinhos(userId));
         Map<Integer, Integer> candidatos = new HashMap<>(); // ID -> score (qtd amigos em comum)
@@ -49,12 +49,7 @@ public class RedeSocial {
         return sugestoes;
     }
     
-    // 3. Calcular grau de separação entre dois usuários
-    public int grauSeparacao(int userId1, int userId2) {
-        return AlgoritmosGrafo.bfsDistancia(grafo, userId1, userId2);
-    }
-    
-    // 4. Encontrar usuários mais populares (maior número de amigos)
+    // Encontrar usuários mais populares (maior número de amigos)
     public List<Usuario> usuariosMaisPopulares(int limite) {
         List<Usuario> usuarios = new ArrayList<>();
         
@@ -68,47 +63,6 @@ public class RedeSocial {
         
         // Retornar apenas os primeiros 'limite'
         return usuarios.subList(0, Math.min(limite, usuarios.size()));
-    }
-    
-    // 5. Analisar perfil de um usuário
-    public void analisarPerfil(int userId) {
-        User user = grafo.obterUsuario(userId);
-        if (user == null) {
-            System.out.println("Usuário não encontrado!");
-            return;
-        }
-        
-        List<Integer> amigos = grafo.obterVizinhos(userId);
-        
-        System.out.println("=== PERFIL DO USUÁRIO ===");
-        System.out.println("Nome: " + user.getNome());
-        System.out.println("ID: " + user.getId());
-        System.out.println("Número de amigos: " + amigos.size());
-        
-        System.out.print("Amigos: ");
-        if (amigos.isEmpty()) {
-            System.out.println("(nenhum)");
-        } else {
-            for (int i = 0; i < amigos.size(); i++) {
-                User amigo = grafo.obterUsuario(amigos.get(i));
-                System.out.print(amigo.getNome());
-                if (i < amigos.size() - 1) System.out.print(", ");
-            }
-            System.out.println();
-        }
-        
-        // Sugestões de amigos
-        System.out.println("\nSugestões de amigos:");
-        List<Usuario> sugestoes = sugerirAmigos(userId, 3);
-        if (sugestoes.isEmpty()) {
-            System.out.println("(nenhuma sugestão disponível)");
-        } else {
-            for (Usuario sugestao : sugestoes) {
-                System.out.println("- " + sugestao.getNome() + 
-                                 " (" + sugestao.getScore() + " amigo(s) em comum)");
-            }
-        }
-        System.out.println("========================");
     }
     
     // Classe auxiliar para usuários com score

@@ -23,7 +23,7 @@ public class CentralidadeAnalise {
         int grau = centralidadeGrau(userId);
         double percentual = (double) grau / (grafo.obterNumeroUsuarios() - 1) * 100;
         
-        System.out.println("=== ANÁLISE DE CENTRALIDADE: " + usuario.getNome() + " ===");
+        System.out.println("Usuário: " + usuario.getNome());
         System.out.println("Centralidade de Grau: " + grau + " conexões");
         System.out.println("Percentual de conectividade: " + String.format("%.1f%%", percentual));
         
@@ -36,31 +36,6 @@ public class CentralidadeAnalise {
         
         System.out.println("Classificação: " + classificacao);
         System.out.println("=====================================");
-    }
-    
-    // Relatório simples dos tops
-    public void relatorioComparativo(int topN) {
-        System.out.println("=== RELATÓRIO DE CENTRALIDADE (TOP " + topN + ") ===");
-        
-        // Criar lista de usuários com suas centralidades
-        List<UsuarioRanking> usuarios = new ArrayList<>();
-        for (Integer userId : grafo.obterTodosIds()) {
-            User user = grafo.obterUsuario(userId);
-            int grau = centralidadeGrau(userId);
-            usuarios.add(new UsuarioRanking(userId, user.getNome(), grau));
-        }
-        
-        // Ordenar por grau decrescente
-        usuarios.sort((a, b) -> Integer.compare(b.getGrau(), a.getGrau()));
-        
-        System.out.println("\n🏆 TOP USUÁRIOS POR CONEXÕES:");
-        for (int i = 0; i < Math.min(topN, usuarios.size()); i++) {
-            UsuarioRanking user = usuarios.get(i);
-            String emoji = i == 0 ? "🥇" : i == 1 ? "🥈" : "🥉";
-            System.out.println(emoji + " " + user.getNome() + " - " + 
-                             user.getGrau() + " conexões");
-        }
-        System.out.println("============================================");
     }
     
     // Ranking completo
