@@ -58,12 +58,6 @@ public class Grafo {
         return usuarios.get(id);
     }
     
-    // Verificar se dois usuários são amigos
-    public boolean saoAmigos(int id1, int id2) {
-        List<Integer> vizinhos = obterVizinhos(id1);
-        return vizinhos.contains(id2);
-    }
-    
     // Obter todos os usuários
     public Collection<User> obterTodosUsuarios() {
         return usuarios.values();
@@ -87,28 +81,6 @@ public class Grafo {
         }
         return total / 2; // Dividir por 2 porque cada amizade é contada duas vezes
     }
-    
-    // Método para debug - mostrar estrutura do grafo
-    public void mostrarGrafo() {
-        System.out.println("=== ESTRUTURA DO GRAFO ===");
-        for (Map.Entry<Integer, List<Integer>> entry : listaAdjacencia.entrySet()) {
-            int userId = entry.getKey();
-            List<Integer> amigos = entry.getValue();
-            User user = usuarios.get(userId);
-            
-            System.out.print(user.getNome() + " (ID:" + userId + ") -> Amigos: ");
-            if (amigos.isEmpty()) {
-                System.out.println("(nenhum)");
-            } else {
-                for (int amigoId : amigos) {
-                    User amigo = usuarios.get(amigoId);
-                    System.out.print(amigo.getNome() + "(" + amigoId + ") ");
-                }
-                System.out.println();
-            }
-        }
-        System.out.println("Total de usuários: " + obterNumeroUsuarios());
-        System.out.println("Total de amizades: " + obterNumeroAmizades());
-        System.out.println("==========================");
-    }
 }
+    
+    

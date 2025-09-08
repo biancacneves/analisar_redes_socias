@@ -38,27 +38,6 @@ public class DetectorComunidades {
         }
     }
     
-    // Encontrar qual comunidade um usuário pertence
-    public int encontrarComunidadeUsuario(int userId) {
-        List<List<Integer>> comunidades = detectarComunidades();
-        
-        for (int i = 0; i < comunidades.size(); i++) {
-            if (comunidades.get(i).contains(userId)) {
-                return i;
-            }
-        }
-        
-        return -1; // Usuário não encontrado
-    }
-    
-    // Verificar se dois usuários estão na mesma comunidade
-    public boolean mesmaComunidade(int userId1, int userId2) {
-        int comunidade1 = encontrarComunidadeUsuario(userId1);
-        int comunidade2 = encontrarComunidadeUsuario(userId2);
-        
-        return comunidade1 != -1 && comunidade1 == comunidade2;
-    }
-    
     // Analisar estatísticas das comunidades
     public EstatisticasComunidades analisarComunidades() {
         List<List<Integer>> comunidades = detectarComunidades();
@@ -130,31 +109,6 @@ public class DetectorComunidades {
         }
         
         return isolados;
-    }
-    
-    // Sugerir conexões para unir comunidades
-    public void sugerirConexoesComunidades() {
-        List<List<Integer>> comunidades = detectarComunidades();
-        
-        if (comunidades.size() <= 1) {
-            System.out.println("Não há comunidades isoladas para conectar.");
-            return;
-        }
-        
-        System.out.println("\n -> SUGESTÕES PARA CONECTAR COMUNIDADES:");
-        
-        for (int i = 0; i < comunidades.size() - 1; i++) {
-            List<Integer> com1 = comunidades.get(i);
-            List<Integer> com2 = comunidades.get(i + 1);
-            
-            // Pegar um usuário de cada comunidade para sugerir conexão
-            User user1 = grafo.obterUsuario(com1.get(0));
-            User user2 = grafo.obterUsuario(com2.get(0));
-            
-            System.out.println("- Conectar " + user1.getNome() + 
-                             " (Comunidade " + (i + 1) + ") com " + 
-                             user2.getNome() + " (Comunidade " + (i + 2) + ")");
-        }
     }
     
     // Classe para armazenar estatísticas

@@ -34,39 +34,6 @@ public class AlgoritmosGrafo {
         return new ArrayList<>();
     }
     
-    // BFS para calcular distância (número de passos)
-    public static int bfsDistancia(Grafo grafo, int origem, int destino) {
-        if (origem == destino) return 0;
-        
-        Queue<Integer> fila = new LinkedList<>();
-        Set<Integer> visitados = new HashSet<>();
-        Map<Integer, Integer> distancia = new HashMap<>();
-        
-        fila.offer(origem);
-        visitados.add(origem);
-        distancia.put(origem, 0);
-        
-        while (!fila.isEmpty()) {
-            int atual = fila.poll();
-            
-            for (int vizinho : grafo.obterVizinhos(atual)) {
-                if (!visitados.contains(vizinho)) {
-                    visitados.add(vizinho);
-                    distancia.put(vizinho, distancia.get(atual) + 1);
-                    fila.offer(vizinho);
-                    
-                    // Se chegou no destino, retorna a distância
-                    if (vizinho == destino) {
-                        return distancia.get(vizinho);
-                    }
-                }
-            }
-        }
-        
-        // Não há caminho
-        return -1;
-    }
-    
     // DFS - Busca em Profundidade (recursiva)
     public static List<Integer> dfs(Grafo grafo, int origem, int destino) {
         Set<Integer> visitados = new HashSet<>();
@@ -105,12 +72,6 @@ public class AlgoritmosGrafo {
         return false;
     }
     
-    // DFS para encontrar todos os nós alcançáveis
-    public static Set<Integer> dfsAlcancaveis(Grafo grafo, int origem) {
-        Set<Integer> visitados = new HashSet<>();
-        dfsRecursivaAlcancaveis(grafo, origem, visitados);
-        return visitados;
-    }
     
     private static void dfsRecursivaAlcancaveis(Grafo grafo, int atual, Set<Integer> visitados) {
         visitados.add(atual);

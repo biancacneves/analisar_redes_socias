@@ -8,12 +8,6 @@ public class User {
         this.nome = nome;
     }
     
-    // Construtor alternativo (só com ID)
-    public User(int id) {
-        this.id = id;
-        this.nome = "Usuario" + id;
-    }
-    
     // Getters
     public int getId() {
         return id;
@@ -21,15 +15,6 @@ public class User {
     
     public String getNome() {
         return nome;
-    }
-    
-    // Setters
-    public void setId(int id) {
-        this.id = id;
-    }
-    
-    public void setNome(String nome) {
-        this.nome = nome;
     }
     
     // Métodos utilitários
