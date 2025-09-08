@@ -73,15 +73,6 @@ public class AlgoritmosGrafo {
     }
     
     
-    private static void dfsRecursivaAlcancaveis(Grafo grafo, int atual, Set<Integer> visitados) {
-        visitados.add(atual);
-        
-        for (int vizinho : grafo.obterVizinhos(atual)) {
-            if (!visitados.contains(vizinho)) {
-                dfsRecursivaAlcancaveis(grafo, vizinho, visitados);
-            }
-        }
-    }
     
     // Função auxiliar para reconstruir caminho no BFS
     private static List<Integer> reconstruirCaminho(Map<Integer, Integer> pais, int origem, int destino) {
